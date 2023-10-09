@@ -21,6 +21,7 @@ class Command(BaseCommand):
                         director=data['Director'],
                         genre=data['Genre'],
                         stars=data['Stars'],
+                        movie_url=data['MovieURL'],
                     )
                 
                 self.stdout.write(self.style.SUCCESS('Data imported successfully'))

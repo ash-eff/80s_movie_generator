@@ -14,12 +14,19 @@ while(scraper_runing):
     url = f'{base_url}{url_addition}'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    movie_items = soup.find_all('div', class_='lister-item-content')
+    movie_items = soup.find_all('div', class_='lister-item')
     for item in movie_items:
         try:
             title = item.find('h3', class_='lister-item-header').find('a').text.strip()
         except AttributeError:
             continue
+
+        try:
+            movie_tag = item.find('div', class_='lister-item-image').find('img')
+            imdb_id = movie_tag['data-tconst'] if 'data-tconst' in movie_tag.attrs else 'N/A'
+            movie_url = f'https://www.imdb.com/title/{imdb_id}' if imdb_id != 'N/A' else 'N/A'
+        except AttributeError:
+            movie_url = 'N/A'
 
         try:
             release_year = item.find('span', class_='lister-item-year').text.strip('()')
@@ -65,7 +72,8 @@ while(scraper_runing):
             'Description': description,
             'Director': director,
             'Genre': genre,
-            'Stars': ', '.join(stars)
+            'Stars': ', '.join(stars),
+            'MovieURL': movie_url,
         })
     
     next_page = int(page_start_value) + RESULTS_PER_PAGE
@@ -74,5 +82,5 @@ while(scraper_runing):
         scraper_runing = False
  
 with open('movie_data.json', 'w') as json_file:
-    json.dump(movie_data, json_file)
+    json.dump(movie_data, json_file, indent=4)
 print(f'{len(movie_data)} movies have been scraped and added.')

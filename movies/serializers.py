@@ -14,5 +14,6 @@ class MovieSerializer(serializers.ModelSerializer):
             'description',
             'director',
             'stars',
+            'movie_url',
         )
         model = Movie
