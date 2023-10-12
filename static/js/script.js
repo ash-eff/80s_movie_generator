@@ -21,4 +21,7 @@ function displayRandomMovie() {
             console.error('Error:', error);
         });
     }
+
+displayRandomMovie();
+
 getRandomMovieButton.addEventListener('click', displayRandomMovie);

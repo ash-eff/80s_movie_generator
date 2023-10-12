@@ -1,0 +1,88 @@
+body {
+    background: linear-gradient(#f7f383, #dd78ae, #ad7cb8);
+    display: flex;
+    min-height: 100vh;
+}
+
+h1 {
+  margin: 0 0 20px 0; 
+  padding: 0;
+  line-height: 1;
+  color: #20b0b1;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.movie-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.movie-button {
+    background-color: #f7f383;
+    color: #20b0b1;
+    border: 2px solid #20b0b1;
+    margin: 20px 0 0 0;
+    padding: 10px 20px;
+}
+
+.movie-button:hover {
+  background-color: #20b0b1;
+  color: #f7f383;
+  border: 2px solid #f7f383;
+}
+
+.filmstrip {
+    min-height: 40vh;
+    --background: rgba(0, 0, 0, .45);
+    --size: 20px;
+    background-image:
+      linear-gradient(to right, var(--background) var(--size), transparent var(--size)),
+      linear-gradient(to bottom, var(--background) var(--size), transparent var(--size)),
+      linear-gradient(to right, var(--background) var(--size), transparent var(--size)), 
+      linear-gradient(to bottom, var(--background) var(--size), transparent var(--size)),
+      linear-gradient(to bottom, transparent var(--size), var(--background) var(--size));
+    background-size: calc(var(--size) * 2) var(--size), calc(var(--size) * 2) var(--size), calc(var(--size) * 2) var(--size), calc(var(--size) * 2) var(--size), 100% calc(100% - var(--size) * 3);
+    background-repeat: repeat-x;
+    background-position: 0 var(--size), top left, 0 calc(100% - var(--size)), bottom left, 0 var(--size);
+    padding: calc(var(--size) * 3) calc(var(--size) * 2.5);
+    box-sizing: border-box;
+  }
+
+.filmstrip-container {
+  width: 60%;
+  margin: auto;
+}
+  
+.filmstrip div {
+    width: 100%;
+    color: white;
+}
+
+@media (max-width: 992px) {
+  .filmstrip-container {
+      width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .filmstrip-container {
+      width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .filmstrip-container {
+      width: 90%;
+  }
+}
